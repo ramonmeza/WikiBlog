@@ -6,7 +6,7 @@ namespace WikiBlog.Controllers
     public class BlogController : Controller
     {
         [HttpGet("/")]
-        public async Task<IActionResult> Get()
+        public IActionResult Get()
         {
             return View("Index");
         }

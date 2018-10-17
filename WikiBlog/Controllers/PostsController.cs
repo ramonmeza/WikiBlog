@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using WikiBlog.Data;
+using WikiBlog.Models;
 
 namespace WikiBlog.Controllers
 {
@@ -20,7 +21,7 @@ namespace WikiBlog.Controllers
         {
             return View("Index", await _context.Posts.ToListAsync());
         }
-
+        
         [HttpGet("/posts/{id?}")]
         public async Task<IActionResult> Get(int? id)
         {
@@ -28,20 +29,28 @@ namespace WikiBlog.Controllers
             return View("Index", await _context.Posts.ToListAsync());
         }
 
-        [HttpPost("/posts/")]
-        public string Post()
+        [HttpPost("/posts")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Post([Bind("ID, Title, Author, Content")] Post post)
         {
-            return "posts POST";
-        }
+            if (ModelState.IsValid)
+            {
+                _context.Add(post);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(GetAll));
+            }
 
+            return View(post);
+        }
+        
         [HttpPut("/posts/{id}")]
-        public string Put()
+        public string Put(int? id)
         {
             return "posts PUT";
         }
 
         [HttpDelete("/posts/{id}")]
-        public string Delete()
+        public string Delete(int? id)
         {
             return "posts DELETE";
         }

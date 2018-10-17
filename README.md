@@ -7,7 +7,7 @@ Live demo hosted here: coming soon...
 
 ## Getting Started
 
-WikiBlog is written in Visual Studio Community 2017 with C# and ASP.NET 2.1 Core. Simply clone or download the repository, then open WikiBlog.sln and run in VS2017. Be sure to create a SQL database and connect it properly using the connection string located in Startup.cs::Configure(). There needs to be one table, called Posts, with the following columns: ID (int), Title (varchar), Author (varchar), Content (text).
+WikiBlog is written in Visual Studio Community 2017 with C# and ASP.NET 2.1 Core. Clone or download the repository, then open WikiBlog.sln and run in VS2017. Install the Microsoft.AspNetCore.StaticFiles package. Create a SQL database and connect it properly using the connection string located located in appsettings.json. There needs to be one table, called Posts, with the following columns: ID (int), Title (varchar), Author (varchar), Content (text).
 
 ## Built With
 

@@ -23,9 +23,8 @@ namespace WikiBlog
             services.AddMvc();
 
             // Connect to SQL database
-            // Move this to a config file at some point
-            var connection = @"Server=localhost\SQLEXPRESS;Database=WikiBlog;Trusted_Connection=True;";
-            services.AddDbContext<PostsContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<PostsContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("PostsContext")));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -33,12 +32,19 @@ namespace WikiBlog
             if(env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
 
             app.UseStaticFiles();
+            app.UseAuthentication();
 
             // Setup MVC defaults
-            app.UseMvc();
+            app.UseMvc(routes => {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Blog}/{action=Index}/{id?}"
+                );
+            });
         }
     }
 }

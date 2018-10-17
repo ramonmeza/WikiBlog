@@ -1,5 +1,4 @@
-﻿@model IEnumerable<WikiBlog.Models.Post>
-
+﻿
 @{
     ViewData["Title"] = "Posts";
 }
@@ -8,41 +7,12 @@
 
 @if (ViewData["post_id"] != null)
 {
-    @:<p>Post id</p>
+    @:<p>Post id: @ViewData["post_id"]</p>
 }
 else
 {
     @:<p>no post id</p>
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Author)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Content)
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+@{ await Html.RenderPartialAsync("Partials/PostForm", new Post()); }
+@{ await Html.RenderPartialAsync("Partials/Posts"); }

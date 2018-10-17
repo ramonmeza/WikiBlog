@@ -1,0 +1,8 @@
+﻿@model WikiBlog.Models.Post
+
+<form asp-action="Post">
+    <input type="text" asp-for="Title" placeholder="Title" />
+    <input type="text" asp-for="Author" placeholder="Author" />
+    <input type="text" asp-for="Content" placeholder="Content" />
+    <button>Post!</button>
+</form>
