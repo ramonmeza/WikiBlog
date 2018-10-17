@@ -1,11 +1,4 @@
-﻿/*********************/
-/*                   */
-/*      Post.cs      */
-/*  Schema for Post  */
-/*                   */
-/*********************/
-
-namespace WikiBlog.Models
+﻿namespace WikiBlog.Models
 {
     public class Post
     {

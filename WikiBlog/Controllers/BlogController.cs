@@ -1,10 +1,4 @@
-﻿/***************************/
-/*                         */
-/*    BlogController.cs    */
-/*  Routes for Post        */
-/*                         */
-/***************************/
-
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WikiBlog.Controllers
@@ -12,7 +6,7 @@ namespace WikiBlog.Controllers
     public class BlogController : Controller
     {
         [HttpGet("/")]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             return View("Index");
         }

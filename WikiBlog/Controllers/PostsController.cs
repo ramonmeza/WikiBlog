@@ -1,27 +1,31 @@
-﻿/****************************/
-/*                          */
-/*    PostsController.cs    */
-/*  Routes for Post         */
-/*                          */
-/****************************/
-
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+using WikiBlog.Data;
 
 namespace WikiBlog.Controllers
 {
     public class PostsController : Controller
     {
-        [HttpGet("/posts")]
-        public IActionResult GetAll()
+        private readonly PostsContext _context;
+
+        public PostsController(PostsContext context)
         {
-            return View("Index");
+            _context = context;
+        }
+
+        [HttpGet("/posts")]
+        public async Task<IActionResult> GetAll()
+        {
+            return View("Index", await _context.Posts.ToListAsync());
         }
 
         [HttpGet("/posts/{id?}")]
-        public IActionResult Get(int? id)
+        public async Task<IActionResult> Get(int? id)
         {
             ViewData["post_id"] = id;
-            return View("Index");
+            return View("Index", await _context.Posts.ToListAsync());
         }
 
         [HttpPost("/posts/")]
