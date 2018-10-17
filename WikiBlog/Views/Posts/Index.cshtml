@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Posts";
+}
+
+<h2>Posts</h2>
+
+@if(ViewData["post_id"] != null)
+{
+    @:<p>Post id</p>
+} else
+{
+    @:<p>no post id</p>
+}
