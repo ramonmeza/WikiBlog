@@ -13,3 +13,11 @@
 
 @{ await Html.RenderPartialAsync("Partials/Posts"); }
 @{ await Html.RenderPartialAsync("Partials/ViewPost", ViewData["post"] as Post); }
+
+<script>
+    $(document).ready(function () {
+        $(".card").each(function (i, d) {
+            $(d).emoji();
+        });
+    });
+</script>

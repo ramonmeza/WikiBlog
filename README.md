@@ -9,11 +9,9 @@ Live demo hosted here: http://ramonmeza-001-site1.htempurl.com
 
 WikiBlog is written in Visual Studio Community 2017 with C# and ASP.NET 2.1 Core. Clone or download the repository, then open WikiBlog.sln and run in VS2017. Install the Microsoft.AspNetCore.StaticFiles package. Create a SQL database and connect it properly using the connection string located located in appsettings.json. There needs to be one table, called Posts, with the following columns: (Primary Key, AutoInc) ID (int), Title (varchar), Author (varchar), Content (text).
 
-## Built With
+## Libraries
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [jQuery Emoji Plugin](https://github.com/linyows/jquery-emoji) - Simple emoji parsing
 
 ## License
 
