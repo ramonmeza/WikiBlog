@@ -1,9 +1,9 @@
-# WikiBlog
+# wikiBlog
 
 A fun way to express your opinions and tamper with other peoples' in real-time.
 
 ## Live Demo
-Live demo hosted here: coming soon...
+Live demo hosted here: http://ramonmeza-001-site1.htempurl.com
 
 ## Getting Started
 

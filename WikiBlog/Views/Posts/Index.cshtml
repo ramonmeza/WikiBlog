@@ -3,7 +3,12 @@
 }
 
 <div class="container">
-    <div class="text-center d-block" style="padding: 20px;"><h2>Posts</h2></div>
+    <div class="row">
+        <div class="col-12 text-center" style="padding: 0 0 20px 0;">
+            <a asp-controller="Blog" asp-action="Get" class="secret-link"><h1><span class="display-3 font-weight-light">wiki</span><span class="display-1 font-weight-bold">Blog</span></h1></a>
+            <p class="text-muted">Make a post. Click a post to <span class="text-danger">tamper</span> with it.</p>
+        </div>
+    </div>
 </div>
 
 @{ await Html.RenderPartialAsync("Partials/Posts"); }
