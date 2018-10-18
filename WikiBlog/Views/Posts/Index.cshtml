@@ -1,17 +1,10 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Posts";
 }
 
-<h2>Posts</h2>
-
-@if (ViewData["post_id"] != null)
-{
-    @:<p>Post id: @ViewData["post_id"]</p>
-}
-else
-{
-    @:<p>no post id</p>
-}
+<div class="container">
+    <div class="text-center d-block" style="padding: 20px;"><h2>Posts</h2></div>
+</div>
 
 @{ await Html.RenderPartialAsync("Partials/Posts"); }
+@{ await Html.RenderPartialAsync("Partials/ViewPost", ViewData["post"] as Post); }

@@ -10,25 +10,27 @@
         <!-- Create all cards from database -->
         @foreach (var item in Model.Reverse())
         {
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title font-weight-bold">
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </h5>
-                    <hr />
-                    <p class="card-text">
-                        @item.Content.ToString().Substring(0, (item.Content.Length > MaxCharactersPerCard) ? MaxCharactersPerCard : item.Content.Length)
-                        @if (item.Content.Length > MaxCharactersPerCard) { 
-                            @:...
-                        }
-                    </p>
-                    <p class="card-text font-italic text-center">
-                        <small class="text-muted">
-                            Posted by @Html.DisplayFor(modelItem => item.Author)
-                        </small>
-                    </p>
+            <a asp-action="Get" asp-route-id="@item.ID" class="custom-card" >
+                <div class="card post" data-postid="@item.ID" data-target="#postModal">
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </h5>
+                        <hr />
+                        <p class="card-text">
+                            @item.Content.ToString().Substring(0, (item.Content.Length > MaxCharactersPerCard) ? MaxCharactersPerCard : item.Content.Length)
+                            @if (item.Content.Length > MaxCharactersPerCard) { 
+                                @:...
+                            }
+                        </p>
+                        <p class="card-text font-italic text-center">
+                            <small class="text-muted">
+                                Posted by @Html.DisplayFor(modelItem => item.Author)
+                            </small>
+                        </p>
+                    </div>
                 </div>
-            </div>
+            </a>
         }
     </div>
 </div>

@@ -1,6 +1,17 @@
 ﻿html, body {
     margin: 0;
     padding: 0;
+
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background: rgb(238,238,238);
+    background: -moz-linear-gradient(0deg, rgba(238,238,238,1) 0%, rgba(255,255,255,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(238,238,238,1) 0%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(0deg, rgba(238,238,238,1) 0%, rgba(255,255,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#eeeeee",endColorstr="#ffffff",GradientType=1);
 }
 
 /* Change amount of columns depending on screen size */
@@ -20,4 +31,18 @@
     .card-columns {
         column-count: 4;
     }
+}
+
+/* Add hover effect for posts */
+.post {
+    transition: 0.5s;
+}
+.post:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Fix color of linked cards */
+a.custom-card,
+a.custom-card:hover {
+    color: inherit;
 }

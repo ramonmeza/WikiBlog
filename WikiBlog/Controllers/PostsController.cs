@@ -26,6 +26,8 @@ namespace WikiBlog.Controllers
         public async Task<IActionResult> Get(int? id)
         {
             ViewData["post_id"] = id;
+            ViewData["post"] = await _context.Posts.FindAsync(id);
+
             return View("Index", await _context.Posts.ToListAsync());
         }
 
