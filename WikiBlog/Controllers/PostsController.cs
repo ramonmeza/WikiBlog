@@ -7,6 +7,7 @@ using WikiBlog.Models;
 
 namespace WikiBlog.Controllers
 {
+    [Route("[controller]")]
     public class PostsController : Controller
     {
         private readonly PostsContext _context;
@@ -16,13 +17,13 @@ namespace WikiBlog.Controllers
             _context = context;
         }
 
-        [HttpGet("/posts")]
+        [HttpGet, ActionName("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             return View("Index", await _context.Posts.ToListAsync());
         }
         
-        [HttpGet("/posts/{id?}")]
+        [HttpGet("{id?}"), ActionName("Get")]
         public async Task<IActionResult> Get(int? id)
         {
             ViewData["post_id"] = id;
@@ -31,7 +32,7 @@ namespace WikiBlog.Controllers
             return View("Index", await _context.Posts.ToListAsync());
         }
 
-        [HttpPost("/posts")]
+        [HttpPost, ActionName("Post")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Post([Bind("ID, Title, Author, Content")] Post post)
         {
@@ -44,17 +45,36 @@ namespace WikiBlog.Controllers
 
             return View(post);
         }
-        
-        [HttpPut("/posts/{id}")]
-        public string Put(int? id)
+
+        [HttpPost("{id}"), ActionName("Put")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Put(int? id, [Bind("ID, Title, Author, Content")] Post post)
         {
-            return "posts PUT";
+            if (id != post.ID)
+                return NotFound();
+
+            if(ModelState.IsValid)
+            {
+                _context.Update(post);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(GetAll));
+            }
+
+            return View(post);
         }
 
-        [HttpDelete("/posts/{id}")]
-        public string Delete(int? id)
+        // This is NOT RESTful - Todo: MAKE IT RESTFUL!
+        [HttpPost("{id}/Delete"), ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int? id)
         {
-            return "posts DELETE";
+            var post = await _context.Posts.FindAsync(id);
+
+            _context.Posts.Remove(post);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(GetAll));
         }
     }
 }
