@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using WikiBlog.Data;
+using WikiBlog.Hubs;
 
 namespace WikiBlog
 {
@@ -25,6 +26,9 @@ namespace WikiBlog
             // Connect to SQL database
             services.AddDbContext<PostsContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PostsContext")));
+
+            // Add SignalR
+            services.AddSignalR();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -37,6 +41,11 @@ namespace WikiBlog
 
             app.UseStaticFiles();
             app.UseAuthentication();
+
+            // Setup SignalR
+            app.UseSignalR(routes => {
+                routes.MapHub<PostHub>("/postHub");
+            });
 
             // Setup MVC defaults
             app.UseMvc(routes => {
