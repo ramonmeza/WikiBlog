@@ -1,23 +1,26 @@
 ﻿@model WikiBlog.Models.Post
 
-<div class="card">
+<div id="NewPostCard" class="card">
     <div class="card-body">
         <h5 class="card-title font-weight-bold">Make a post</h5>
         <hr>
-        <form asp-action="Post">
+        <!-- <form asp-action="Post"> -->
+        <form asp-action="Post" id="HiddenNewPostForm" style="display: none;"></form>
+        <div id="NewPostForm">
             <div class="form-group">
-                <input asp-for="Title" class="form-control" type="text" placeholder="Title" required />
+                <input asp-for="Title" id="NewPostTitle" class="form-control" type="text" placeholder="Title" required />
             </div>
             <div class="form-group">
-                <input asp-for="Author" class="form-control" type="text" placeholder="Author" required />
+                <input asp-for="Author" id="NewPostAuthor" class="form-control" type="text" placeholder="Author" required />
             </div>
             <div class="form-group">
-                <textarea asp-for="Content" class="form-control" placeholder="Content" required></textarea>
+                <textarea asp-for="Content" id="NewPostContent" class="form-control" placeholder="Content" required></textarea>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary btn-block" type="submit">Post</button>
+                <button id="NewPostButton" class="btn btn-primary btn-block" type="submit">Post</button>
                 <button class="btn btn-primary btn-block" type="reset">Clear</button>
             </div>
-        </form>
+            <!-- </form> -->
+        </div>
     </div>
 </div>
