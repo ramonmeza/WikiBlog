@@ -14,8 +14,6 @@
 @{ await Html.RenderPartialAsync("Partials/Posts"); }
 @{ await Html.RenderPartialAsync("Partials/ViewPost", ViewData["post"] as Post); }
 
-<button id="sendPost">Send Post</button>
-
 <script>
     $(document).ready(function () {
         $(".card").each(function (i, d) {
@@ -24,4 +22,4 @@
     });
 </script>
 
-<script src="~/js/post.js"></script>
+<script src="~/js/realtimeposts.js"></script>
